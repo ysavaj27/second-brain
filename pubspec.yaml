@@ -1,0 +1,58 @@
+name: second_brain
+description: "A new Flutter project."
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.4.0-190.0.dev <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # ICONS
+  cupertino_icons: ^1.0.2
+  font_awesome_flutter: ^10.7.0
+
+  # BASIC
+  get: ^4.6.6
+  get_storage: ^2.1.1
+  dio: ^5.4.0
+  logger: ^2.0.2+1
+  fluttertoast: ^8.2.4
+  cached_network_image: ^3.3.1
+  intl: ^0.19.0
+  flutter_svg: ^2.0.10+1
+
+  # SYSTEMS
+  device_info_plus: ^9.1.2
+  package_info_plus: ^5.0.1
+  connectivity_plus: ^5.0.2
+
+  # ANIMATION/ LOADER
+  flutter_spinkit: ^5.2.0
+  animate_do: ^3.3.3
+
+
+  # IMAGE AND FILE PICKER
+  image_picker: ^1.0.7
+  file_picker: ^6.1.1
+  excel: ^4.0.2
+  path_provider: ^2.1.2
+  file_selector: ^1.0.3
+  crop_image: ^1.0.12
+
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^3.0.0
+
+flutter:
+
+  uses-material-design: true
+
