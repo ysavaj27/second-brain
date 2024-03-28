@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:captable/src/utils/app_exports.dart';
 import 'package:intl/intl.dart';
 
 extension StringExtensions on String {
@@ -41,22 +40,22 @@ extension StringExtensions on String {
     return utf8.decode(decodedBytes);
   }
 
-  String get fileTypeImage {
-    String fileName = split('/').last.split(".").last;
-    // logger.d("File Name :$fileName");
-    switch (fileName) {
-      case "xlc":
-        return AppAssets.xlsIc;
-      case "xlsx":
-        return AppAssets.xlsIc;
-      case "doc":
-        return AppAssets.docIc;
-      case "image":
-        return AppAssets.imageIc;
-      case "pdf":
-        return AppAssets.pdfIc;
-      default:
-        return AppAssets.docIc;
-    }
-  }
+  // String get fileTypeImage {
+  //   String fileName = split('/').last.split(".").last;
+  //   // logger.d("File Name :$fileName");
+  //   switch (fileName) {
+  //     case "xlc":
+  //       return AppAssets.xlsIc;
+  //     case "xlsx":
+  //       return AppAssets.xlsIc;
+  //     case "doc":
+  //       return AppAssets.docIc;
+  //     case "image":
+  //       return AppAssets.imageIc;
+  //     case "pdf":
+  //       return AppAssets.pdfIc;
+  //     default:
+  //       return AppAssets.docIc;
+  //   }
+  // }
 }

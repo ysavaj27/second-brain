@@ -1,4 +1,4 @@
-package com.example.second_brain
+package com.second_brain
 
 import io.flutter.embedding.android.FlutterActivity
 

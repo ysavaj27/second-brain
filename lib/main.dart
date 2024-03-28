@@ -1,9 +1,13 @@
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:second_brain/src/models/init/init_page.dart';
-import 'package:second_brain/src/theme/app_theme.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:second_brain/src/utils/app_exports.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await init.init();
+
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
 

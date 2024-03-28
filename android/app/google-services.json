@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "191114173571",
+    "project_id": "second-brain-3cfd4",
+    "storage_bucket": "second-brain-3cfd4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:191114173571:android:53e287acda30a44d760fb6",
+        "android_client_info": {
+          "package_name": "com.second_brain"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWjXhaYaZz9HBBt_W02FvxKKOxazYbX-g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
