@@ -1,4 +1,4 @@
-import 'package:captable/src/utils/app_exports.dart';
+import 'package:second_brain/src/utils/app_exports.dart';
 
 Future<Object?> showCustomDialog(Widget widget, [barrierDismissible = true]) async {
  return await showGeneralDialog(

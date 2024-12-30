@@ -1,3 +1,5 @@
+import 'package:second_brain/src/theme/dark/dark_theme.dart';
+import 'package:second_brain/src/theme/light/light_theme.dart';
 import 'package:second_brain/src/utils/app_exports.dart';
 
 class AppTheme {
@@ -13,132 +15,9 @@ class AppTheme {
 
   static const fonts = 'lato';
 
-  static final darkTheme = ThemeData(
-    fontFamily: fonts,
-    iconTheme: const IconThemeData(color: Colors.white),
-    primarySwatch: Colors.grey,
-    brightness: Brightness.dark,
-    appBarTheme: const AppBarTheme(
-      elevation: 0,
-      color: Colors.transparent,
-      systemOverlayStyle: SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
-        statusBarIconBrightness: Brightness.light,
-        systemNavigationBarColor: Colors.transparent,
-        systemNavigationBarIconBrightness: Brightness.light,
-      ),
-    ),
-    scaffoldBackgroundColor: Colors.black,
-    textButtonTheme: TextButtonThemeData(
-      style: TextButton.styleFrom(
-        textStyle: const TextStyle(fontFamily: fonts),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(5.0),
-        ),
-      ),
-    ),
-    textTheme: const TextTheme(
-      headlineMedium: TextStyle(
-        fontFamily: fonts,
-        fontSize: 40,
-        color: Colors.white,
-        fontWeight: FontWeight.bold,
-      ),
-      headlineSmall: TextStyle(
-          fontFamily: fonts, fontSize: 20, fontWeight: FontWeight.bold),
-      labelLarge: TextStyle(
-        fontFamily: fonts,
-        fontSize: 20,
-        fontWeight: FontWeight.normal,
-      ),
-      labelMedium: TextStyle(
-        fontFamily: fonts,
-        fontSize: 16,
-        fontWeight: FontWeight.normal,
-      ),
-      labelSmall: TextStyle(
-        fontFamily: fonts,
-        letterSpacing: 0.7,
-        fontSize: 14,
-        fontWeight: FontWeight.normal,
-      ),
-    ),
-  );
+  static final darkTheme = DarkTheme.theme;
 
-  static final lightTheme = ThemeData(
-    fontFamily: fonts,
-    useMaterial3: false,
-    iconTheme: const IconThemeData(color: Colors.black),
-    primarySwatch: Colors.grey,
-    brightness: Brightness.light,
-    appBarTheme: const AppBarTheme(
-      elevation: 0,
-      color: Colors.transparent,
-      systemOverlayStyle: SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
-        statusBarIconBrightness: Brightness.dark,
-        systemNavigationBarColor: Colors.transparent,
-        systemNavigationBarIconBrightness: Brightness.dark,
-      ),
-    ),
-    scaffoldBackgroundColor: Colors.white,
-    textButtonTheme: TextButtonThemeData(
-      style: TextButton.styleFrom(
-        textStyle: const TextStyle(
-          fontFamily: fonts,
-          fontWeight: FontWeight.w600,
-          color: AppColors.primary,
-          fontSize: 15,
-        ),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
-      ),
-    ),
-    elevatedButtonTheme: ElevatedButtonThemeData(
-      style: ElevatedButton.styleFrom(
-        padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 8),
-        minimumSize: const Size(95, 30),
-        backgroundColor: Colors.transparent,
-        shadowColor: Colors.transparent,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        textStyle: TextStyle(
-          color: Get.theme.scaffoldBackgroundColor,
-        ),
-      ),
-    ),
-    textTheme: const TextTheme(
-      headlineMedium: TextStyle(
-        fontFamily: fonts,
-        fontSize: 40,
-        color: Colors.black,
-        fontWeight: FontWeight.bold,
-      ),
-      headlineSmall: TextStyle(
-        fontFamily: fonts,
-        fontSize: 20,
-        fontWeight: FontWeight.bold,
-        color: Colors.black,
-      ),
-      labelLarge: TextStyle(
-        fontFamily: fonts,
-        fontSize: 20,
-        fontWeight: FontWeight.normal,
-        color: Colors.black,
-      ),
-      labelMedium: TextStyle(
-        fontFamily: fonts,
-        fontSize: 16,
-        fontWeight: FontWeight.normal,
-        color: Colors.black,
-      ),
-      labelSmall: TextStyle(
-        fontFamily: fonts,
-        letterSpacing: 0.7,
-        fontSize: 14,
-        fontWeight: FontWeight.normal,
-        color: Colors.black,
-      ),
-    ),
-  );
+  static final lightTheme = LightTheme.theme;
 
   static Future<void> setTheme({required ThemeMode mode}) async {
     Get.changeThemeMode(mode);

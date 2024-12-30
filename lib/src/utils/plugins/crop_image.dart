@@ -1,8 +1,7 @@
 import 'dart:io';
 import 'dart:ui' as ui;
 import 'dart:ui';
-import 'package:captable/src/utils/app_exports.dart';
-import 'package:crop_image/crop_image.dart';
+import 'package:second_brain/src/utils/app_exports.dart';import 'package:crop_image/crop_image.dart';
 
 class CropImageWidget extends StatelessWidget {
   CropImageWidget({super.key, required this.imagePath});

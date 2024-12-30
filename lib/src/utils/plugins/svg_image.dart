@@ -1,5 +1,4 @@
-import 'package:captable/src/utils/app_exports.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:second_brain/src/utils/app_exports.dart';import 'package:flutter_svg/flutter_svg.dart';
 
 class SVGAssetImage extends StatelessWidget {
   final String path;

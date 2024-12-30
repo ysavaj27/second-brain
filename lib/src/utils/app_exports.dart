@@ -1,4 +1,4 @@
-library captable;
+library;
 
 export 'package:flutter/material.dart';
 export 'package:flutter/cupertino.dart' hide RefreshCallback;
@@ -8,7 +8,6 @@ export 'package:flutter/services.dart';
 /// Config
 export 'package:second_brain/src/config/app_config.dart';
 export 'package:second_brain/src/config/dio_config.dart';
-export 'package:second_brain/src/config/dio_config (1).dart';
 export 'package:second_brain/src/config/init_config.dart';
 export 'package:second_brain/src/config/pref_config.dart';
 export 'package:second_brain/src/config/master_config.dart';
@@ -25,7 +24,7 @@ export 'package:second_brain/src/models/common/media_model.dart';
 export 'package:second_brain/src/models/user_model.dart';
 
 ///THEME
-export 'package:second_brain/src/theme/app_colors.dart';
+export 'package:second_brain/src/utils/constant/app_colors.dart';
 export 'package:second_brain/src/theme/app_theme.dart';
 
 ///TRANSLATION

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:second_brain/src/theme/app_theme.dart';
+import 'package:second_brain/src/utils/app_exports.dart';
 
 import 'init_page_ctrl.dart';
 

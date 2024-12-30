@@ -1,6 +1,5 @@
 import 'dart:io';
-import 'package:captable/src/utils/app_exports.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:second_brain/src/utils/app_exports.dart';import 'package:image_picker/image_picker.dart';
 
 import '../functions/dialog.dart';
 import 'crop_image.dart';
@@ -32,20 +31,12 @@ class FilePickers {
         return result.files
             .where((e) => e.path != null && e.path!.isNotEmpty)
             .map((file) {
-              if (file.size.convertToMB < masterConfig.config.documentMaxSize) {
                 return MediaModel(
                     type: type,
                     name: file.name,
                     path: file.path ?? '',
                     dataType: FileDataType.filePath,
                     file: File(file.path ?? ""));
-              } else {
-                toast(
-                  "Document exceeds ${masterConfig.config.documentMaxSize} MB limit",
-                  MessageEnum.alert,
-                );
-                return null;
-              }
             })
             .whereType<MediaModel>()
             .toList();
@@ -61,8 +52,7 @@ class FilePickers {
     if (pickedFile != null) {
       Uint8List? bytes;
       final image = File(pickedFile.path);
-      final byte = await pickedFile.length();
-      if (byte.convertToMB <= masterConfig.config.documentMaxSize) {
+      // final byte = await pickedFile.length();
         if (isCropper) {
           bytes = (await showCustomDialog(
               CropImageWidget(imagePath: pickedFile.path))) as Uint8List?;
@@ -75,10 +65,7 @@ class FilePickers {
           uint8list: bytes,
           dataType: isCropper ? FileDataType.bytes : FileDataType.filePath,
         );
-      } else {
-        toast("Image is not more then ${masterConfig.config.imageMaxSize} MB",
-            MessageEnum.success);
-      }
+
     }
     return null;
   }

@@ -1,13 +1,4 @@
-import 'package:captable/src/backend/Employee/employee_api.dart';
-import 'package:captable/src/backend/auth/auth_api.dart';
-import 'package:captable/src/modules/auth/login/login_page.dart';
-import 'package:captable/src/modules/auth/signup/startup_detail/company_detail_page_ctrl.dart';
-import 'package:captable/src/modules/home/home_page.dart';
-import 'package:captable/src/utils/app_exports.dart';
-
-import '../auth/forgot_password/forgot_password_page.dart';
-import '../auth/signup/add_captable/add_captable_page.dart';
-import '../auth/signup/startup_detail/company_detail_page.dart';
+import 'package:second_brain/src/utils/app_exports.dart';
 
 class InitScreenCtrl extends GetxController {
   Future<void> loginCheck() async {
@@ -22,7 +13,6 @@ class InitScreenCtrl extends GetxController {
     //   Get.offAll(() => LoginPage());
     // }
 
-    Get.offAll(() =>  AddCaptablePage());
 
     // Get.offAll(() => AddCaptablePage());
     // Get.offAll(() =>  ForgotPasswordPage());

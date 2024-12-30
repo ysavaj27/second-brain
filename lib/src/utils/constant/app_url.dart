@@ -2,7 +2,7 @@ import '../app_exports.dart';
 
 class AppUrl {
   static const String baseURL = "http://65.2.148.207/api/v1/";
-  static String imageURL = masterConfig.config.s3Baseurl;
+  static String imageURL = "";
 
   // static const String imageURL =
   //     "https://shuruup-captable.s3.ap-south-1.amazonaws.com/";

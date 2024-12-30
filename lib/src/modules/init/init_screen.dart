@@ -1,5 +1,5 @@
-import 'package:captable/src/utils/app_exports.dart';
-import 'package:captable/src/utils/plugins/loader.dart';
+import 'package:second_brain/src/utils/app_exports.dart';
+import 'package:second_brain/src/utils/plugins/loader.dart';
 
 import 'init_screen_ctrl.dart';
 
