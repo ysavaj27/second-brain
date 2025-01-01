@@ -49,7 +49,7 @@ class DeleteWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               CustomOutlinedButton(
-                onPressed: Get.back,
+                onPressed: (){},
                 width: 95,
                 size: const Size(95, 40),
                 text: "Cancel",

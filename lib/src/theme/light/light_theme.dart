@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
 import 'package:second_brain/src/utils/constant/app_colors.dart';
 
 class LightTheme{
@@ -42,7 +41,7 @@ class LightTheme{
         shadowColor: Colors.transparent,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         textStyle: TextStyle(
-          color: Get.theme.scaffoldBackgroundColor,
+          // color: ,
         ),
       ),
     ),

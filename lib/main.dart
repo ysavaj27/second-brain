@@ -1,4 +1,3 @@
-import 'package:second_brain/src/models/init/init_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:second_brain/src/utils/app_exports.dart';
 import 'firebase_options.dart';
@@ -15,13 +14,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.defaultLightTheme,
       darkTheme: AppTheme.defaultDarkTheme,
       themeMode: ThemeMode.light,
-      home: InitPage(),
+      // home: InitPage(),
     );
   }
 }

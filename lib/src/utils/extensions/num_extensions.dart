@@ -1,4 +1,3 @@
-import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'dart:math';
 
@@ -33,37 +32,6 @@ extension Formatte on int {
     if (this == 0) return '0 ${suffixes[0]}';
     var i = (log(this) / log(1024)).floor();
     return "${(this / pow(1024, i)).toStringAsFixed(1)} ${suffixes[i]}";
-  }
-
-  String get monthName {
-    switch (this) {
-      case 1:
-        return 'jan'.tr;
-      case 2:
-        return 'feb'.tr;
-      case 3:
-        return 'mar'.tr;
-      case 4:
-        return 'apr'.tr;
-      case 5:
-        return 'may'.tr;
-      case 6:
-        return 'jun'.tr;
-      case 7:
-        return 'jul'.tr;
-      case 8:
-        return 'aug'.tr;
-      case 9:
-        return 'sep'.tr;
-      case 10:
-        return 'oct'.tr;
-      case 11:
-        return 'nov'.tr;
-      case 12:
-        return 'dec'.tr;
-      default:
-        return '';
-    }
   }
 
   String get alphaBets {

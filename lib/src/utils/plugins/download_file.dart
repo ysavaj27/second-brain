@@ -1,10 +1,11 @@
 import 'dart:io';
-import 'package:second_brain/src/utils/app_exports.dart';import 'package:dio/dio.dart';
+import 'package:second_brain/src/utils/app_exports.dart';
+import 'package:dio/dio.dart';
 import 'package:file_selector/file_selector.dart';
 import 'package:path_provider/path_provider.dart';
 
 class DownloadFile {
- static Dio dio = Dio();
+  static Dio dio = Dio();
 
   static Future<bool> downloadFromByte(
       {required List<int> bytes, required String fileName}) async {
@@ -28,7 +29,6 @@ class DownloadFile {
 
   static Future<bool> downloadFromUrl({
     required String url,
-    RxDouble? progress,
     Function(int received, int total)? onProgress,
   }) async {
     try {
@@ -37,8 +37,7 @@ class DownloadFile {
       if (directory != null && directory.isNotEmpty) {
         var filePath = '$directory/$fileName';
         logger.d("Download File Path :$filePath");
-        await dio.download(url, filePath,
-            onReceiveProgress: (received, total) {
+        await dio.download(url, filePath, onReceiveProgress: (received, total) {
           if (onProgress != null) {
             onProgress((received / total * 100).toInt(), total);
           }

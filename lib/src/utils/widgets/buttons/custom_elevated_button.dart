@@ -41,7 +41,7 @@ class CustomElevatedButton extends StatelessWidget {
     this.isLoginGradient = true,
     this.noGradient = false,
     this.gradient = GradientEnum.auth,
-     this.size,
+    this.size,
   });
 
   @override
@@ -69,14 +69,15 @@ class CustomElevatedButton extends StatelessWidget {
         ),
         child: isLoading
             ? CupertinoActivityIndicator(
-                color: context.theme.scaffoldBackgroundColor)
+                // color: context.theme.scaffoldBackgroundColor,
+              )
             : child ??
                 Text(
                   text,
                   style: style ??
                       TextStyle(
                           fontSize: fontSize ?? 16.0,
-                          color: color ?? context.theme.scaffoldBackgroundColor,
+                          // color: color ?? context.theme.scaffoldBackgroundColor,
                           fontWeight: fontWeight),
                 ),
       ),
@@ -144,7 +145,7 @@ class MyElevatedButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          minimumSize: Size(Get.width, 61),
+          // minimumSize: Size(Get.width, 61),
           backgroundColor: Colors.transparent,
           shadowColor: Colors.transparent,
           shape: RoundedRectangleBorder(borderRadius: borderRadius),

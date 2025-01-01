@@ -54,8 +54,8 @@ class FilePickers {
       final image = File(pickedFile.path);
       // final byte = await pickedFile.length();
         if (isCropper) {
-          bytes = (await showCustomDialog(
-              CropImageWidget(imagePath: pickedFile.path))) as Uint8List?;
+          // bytes = (await showCustomDialog(
+          //     CropImageWidget(imagePath: pickedFile.path))) as Uint8List?;
         }
         return MediaModel(
           type: FileType.image,

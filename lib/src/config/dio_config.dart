@@ -149,8 +149,8 @@ class ApiInterceptor extends Interceptor {
 
   Future<void> _handleTokenExpiration() async {
     logger.w("Token expired. Logging out the user.");
-    await Get.offAllNamed('/signIn');
-    await app.setUser(prefUser: UserModel.fromJson({}));
+    // await Get.offAllNamed('/signIn');
+    // await app.setUser(prefUser: UserModel.fromJson({}));
   }
 }
 

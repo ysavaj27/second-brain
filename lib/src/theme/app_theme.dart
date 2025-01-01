@@ -20,7 +20,7 @@ class AppTheme {
   static final lightTheme = LightTheme.theme;
 
   static Future<void> setTheme({required ThemeMode mode}) async {
-    Get.changeThemeMode(mode);
+    // Get.changeThemeMode(mode);
     await prefs.setValue(key: AppKey.themeKey, value: mode.index);
   }
 

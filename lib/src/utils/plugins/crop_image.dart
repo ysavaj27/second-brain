@@ -18,7 +18,7 @@ class CropImageWidget extends StatelessWidget {
       height: 500,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20.0),
-        color: context.theme.scaffoldBackgroundColor,
+        // color: context.theme.scaffoldBackgroundColor,
       ),
       padding: const EdgeInsets.all(15),
       child: Column(
@@ -76,7 +76,7 @@ class CropImageWidget extends StatelessWidget {
               ui.Image bitmap = await controller.croppedBitmap();
               var data = await bitmap.toByteData(format: ImageByteFormat.png);
               var bytes = data!.buffer.asUint8List();
-              Get.back(result: bytes);
+              // Get.back(result: bytes);
             },
           ),
         ],

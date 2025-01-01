@@ -1,9 +1,8 @@
-import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final PrefConfig prefs = PrefConfig.instance;
 
-class PrefConfig extends GetxService {
+class PrefConfig  {
   static final PrefConfig instance = PrefConfig();
 
   late SharedPreferences _prefs;

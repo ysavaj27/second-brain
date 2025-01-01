@@ -2,7 +2,6 @@ library;
 
 export 'package:flutter/material.dart';
 export 'package:flutter/cupertino.dart' hide RefreshCallback;
-export 'package:get/get.dart' hide Response, FormData, MultipartFile;
 export 'package:flutter/services.dart';
 
 /// Config
@@ -10,7 +9,6 @@ export 'package:second_brain/src/config/app_config.dart';
 export 'package:second_brain/src/config/dio_config.dart';
 export 'package:second_brain/src/config/init_config.dart';
 export 'package:second_brain/src/config/pref_config.dart';
-export 'package:second_brain/src/config/master_config.dart';
 
 
 /// BACKEND

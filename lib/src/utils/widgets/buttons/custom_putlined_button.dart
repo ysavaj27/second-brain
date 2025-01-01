@@ -32,7 +32,7 @@ class CustomOutlinedButton extends StatelessWidget {
           text,
           style: TextStyle(
             fontSize: 16.0,
-            color: context.textTheme.titleMedium?.color,
+            // color: context.textTheme.titleMedium?.color,
             fontWeight: FontWeight.w500,
             // fontWeight: fontWeight,
           ),

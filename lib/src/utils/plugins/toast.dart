@@ -24,32 +24,32 @@ void toast(String message, [MessageEnum type = MessageEnum.info]) {
     }
   }
 
-  Get.showSnackbar(
-    GetSnackBar(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-      duration: const Duration(milliseconds: 2000),
-      snackPosition: SnackPosition.TOP,
-      snackStyle: SnackStyle.FLOATING,
-      maxWidth: 650,
-      borderRadius: 10,
-      margin: const EdgeInsets.only(top: 15),
-      animationDuration: const Duration(milliseconds: 600),
-      dismissDirection: DismissDirection.endToStart,
-      // forwardAnimationCurve: Curves.easeInOut,
-      // reverseAnimationCurve: Curves.easeOut,
-      // message: message,
-      // title: ,
-      // titleText: Text(
-      //   isSuccess ? "Success" : "Failed",
-      //   style: const TextStyle(
-      //       fontWeight: FontWeight.w600, fontSize: 17, color: Colors.black),
-      // ),
-      messageText: Text(
-        message,
-        style:
-            TextStyle(color: Get.theme.scaffoldBackgroundColor, fontSize: 14),
-      ),
-      backgroundColor: backgroundColor(),
-    ),
-  );
+  // Get.showSnackbar(
+  //   GetSnackBar(
+  //     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+  //     duration: const Duration(milliseconds: 2000),
+  //     snackPosition: SnackPosition.TOP,
+  //     snackStyle: SnackStyle.FLOATING,
+  //     maxWidth: 650,
+  //     borderRadius: 10,
+  //     margin: const EdgeInsets.only(top: 15),
+  //     animationDuration: const Duration(milliseconds: 600),
+  //     dismissDirection: DismissDirection.endToStart,
+  //     // forwardAnimationCurve: Curves.easeInOut,
+  //     // reverseAnimationCurve: Curves.easeOut,
+  //     // message: message,
+  //     // title: ,
+  //     // titleText: Text(
+  //     //   isSuccess ? "Success" : "Failed",
+  //     //   style: const TextStyle(
+  //     //       fontWeight: FontWeight.w600, fontSize: 17, color: Colors.black),
+  //     // ),
+  //     messageText: Text(
+  //       message,
+  //       style:
+  //           TextStyle(color: Get.theme.scaffoldBackgroundColor, fontSize: 14),
+  //     ),
+  //     backgroundColor: backgroundColor(),
+  //   ),
+  // );
 }

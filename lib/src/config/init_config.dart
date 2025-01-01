@@ -1,24 +1,22 @@
 import 'dart:io';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:device_info_plus/device_info_plus.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:second_brain/src/utils/widgets/app_popup.dart';
 import '../utils/app_exports.dart';
 
 final InitConfig init = InitConfig.instance;
 
-class InitConfig extends GetxService {
+class InitConfig {
   static final InitConfig instance = InitConfig();
 
   Future<void> init() async {
     await _initLocalStorage();
-     _setOrientation();
+    _setOrientation();
     // _getLanguage();
   }
 
   Future<void> initConfig() async {
-    await app.getUser();
+    // await app.getUser();
     dioConfig.init();
     await networkCheck();
     await _getDeviceInfo();
@@ -30,18 +28,19 @@ class InitConfig extends GetxService {
 
   String deviceModel = 'Not Available';
   String deviceOs = 'Not Available';
-  Rx<ThemeMode> themeMode = AppTheme.getTheme.obs;
+
+  // Rx<ThemeMode> themeMode = AppTheme.getTheme.obs;
 
   static _initLocalStorage() async {
     try {
       logger.d('INITING GET STORAGE');
-      await Get.putAsync(() => PrefConfig().init());
+      // await Get.putAsync(() => PrefConfig().init());
     } catch (e) {
       logger.e(e);
     }
   }
 
-  static void _setOrientation()  {
+  static void _setOrientation() {
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
@@ -66,22 +65,22 @@ class InitConfig extends GetxService {
         .listen((List<ConnectivityResult> result) {
       // logger.wtf(result);
       if (result.isNotEmpty && result.first == ConnectivityResult.none) {
-        appPopUp(barrierDismissible: false, children: [
-          const SizedBox(height: 10),
-          const SpinKitPouringHourGlassRefined(color: Colors.white),
-          const SizedBox(height: 20),
-          Text(
-            "Network Connection Lost..! \n Please Reconnect..",
-            style: Get.context?.textTheme.labelMedium
-                ?.copyWith(fontWeight: FontWeight.bold),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 10),
-        ]);
+        // appPopUp(barrierDismissible: false, children: [
+        //   const SizedBox(height: 10),
+        //   const SpinKitPouringHourGlassRefined(color: Colors.white),
+        //   const SizedBox(height: 20),
+        //   Text(
+        //     "Network Connection Lost..! \n Please Reconnect..",
+        //     style: Get.context?.textTheme.labelMedium
+        //         ?.copyWith(fontWeight: FontWeight.bold),
+        //     textAlign: TextAlign.center,
+        //   ),
+        //   const SizedBox(height: 10),
+        // ]);
       } else if (result.isNotEmpty && result.first != ConnectivityResult.none) {
-        if (Get.context != null) {
-          Get.back();
-        }
+        // if (Get.context != null) {
+        //   Get.back();
+        // }
       }
     });
   }
