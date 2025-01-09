@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:open_filex/open_filex.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+import 'package:second_brain/src/backend/sqflite/favorite/favorite_db.dart';
+import 'package:second_brain/src/backend/sqflite/song/song_db.dart';
+import 'package:second_brain/src/models/song/favorite_model.dart';
+import 'package:second_brain/src/models/song/song_model.dart';
 import 'package:second_brain/src/modules/audio_player/audio_player_page.dart';
+import 'package:second_brain/src/modules/favorite/favorite_screen.dart';
+import 'package:second_brain/src/modules/home/download_screen.dart';
+import 'package:second_brain/src/provider/player_provider.dart';
 import 'package:second_brain/src/utils/app_exports.dart';
-import 'dart:io';
-
-import 'player_screen.dart';
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<File> _audioFiles = [];
-  List<File> _videoFiles = [];
+  List<SongModel> _audioFiles = [];
 
   @override
   void initState() {
@@ -23,13 +28,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> _loadDownloadedFiles() async {
-    var appDir = await getApplicationDocumentsDirectory();
-    var files = Directory(appDir.path).listSync().whereType<File>().toList();
-
-    setState(() {
-      _audioFiles = files.where((file) => file.path.endsWith('.mp3')).toList();
-      _videoFiles = files.where((file) => file.path.endsWith('.mp4')).toList();
-    });
+    _audioFiles = await SongDB.queryAllRows();
+    setState(() {});
   }
 
   @override
@@ -38,72 +38,85 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: Text('Downloaded Files'),
         actions: [
-          IconButton(
-            icon: Icon(Icons.download),
-            onPressed: () {
-              Navigator.pushNamed(context, '/download');
-            },
-          ),
+          // IconButton(
+          //   icon: Icon(Icons.favorite),
+          //   onPressed: () {
+          //
+          //     Navigator.push(
+          //       context,
+          //       MaterialPageRoute(builder: (context) => FavoriteScreen()),
+          //     );
+          //   },
+          // ),
         ],
       ),
       body: RefreshIndicator(
-        onRefresh: () => _loadDownloadedFiles(),
-        child: ListView(
-          children: [
-            if (_audioFiles.isNotEmpty)
-              ListTile(
-                  title: Text('Audio Files',
-                      style: TextStyle(fontWeight: FontWeight.bold))),
-            ..._audioFiles.map(
-              (file) => ListTile(
-                title: Text(file.path.split('/').last),
-                trailing: Icon(Icons.play_arrow),
-                onLongPress: () {
-                  // OpenFilex.open("/sdcard/example.txt");
-                },
+          onRefresh: () => _loadDownloadedFiles(),
+          child: ListView.builder(
+            itemCount: _audioFiles.length,
+            physics: BouncingScrollPhysics(),
+            itemBuilder: (context, index) {
+              var model = _audioFiles[index];
+              return ListTile(
+                leading: CacheImage(
+                  url: model.thumbnail,
+                  width: 70,
+                ),
+                title: Text(model.name),
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          AudioPlayerPage(filePath: file.path),
-                    ),
-                  );
+                  Provider.of<PlayerProver>(context, listen: false)
+                      .initializeAudioPlayer(model);
+                  // context.go(Routes.song,extra: model);
                   // Navigator.push(
                   //   context,
                   //   MaterialPageRoute(
-                  //     builder: (context) =>
-                  //         PlayerScreen(filePath: file.path),
+                  //     builder: (context) => AudioPlayerPage(),
                   //   ),
                   // );
                 },
-              ),
-            ),
-            if (_videoFiles.isNotEmpty)
-              ListTile(
-                  title: Text('Video Files',
-                      style: TextStyle(fontWeight: FontWeight.bold))),
-            ..._videoFiles.map(
-              (file) => ListTile(
-                title: Text(file.path.split('/').last),
-                trailing: Icon(Icons.play_arrow),
-                onLongPress: () {
-                  // OpenFilex.open(file.path);
-                },
-                onTap: () {
-                  logger.d(file.path);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => PlayerScreen(filePath: file.path),
-                    ),
-                  );
-                },
-              ),
-            ),
-          ],
-        ),
-      ),
+                trailing: PopupMenuButton<int>(
+                  icon: Icon(Icons.more_vert),
+                  onSelected: (value) async {
+                    if (value == 1) {
+                      // Handle the action for adding to favorites
+                      await FavoriteDB.insert(
+                        FavoriteModel(songId: model.id),
+                      );
+                      _loadDownloadedFiles();
+                    } else if (value == 2) {
+                      // Handle the action for deleting
+                      await SongDB.delete(model.id);
+                      _loadDownloadedFiles();
+                    }
+                  },
+                  itemBuilder: (BuildContext context) {
+                    return [
+                      PopupMenuItem<int>(
+                        value: 1,
+                        child: Row(
+                          children: [
+                            Icon(Icons.favorite, color: Colors.green),
+                            SizedBox(width: 8),
+                            Text('Favorites'),
+                          ],
+                        ),
+                      ),
+                      PopupMenuItem<int>(
+                        value: 2,
+                        child: Row(
+                          children: [
+                            Icon(Icons.delete, color: Colors.red),
+                            SizedBox(width: 8),
+                            Text('Delete'),
+                          ],
+                        ),
+                      ),
+                    ];
+                  },
+                ),
+              );
+            },
+          )),
     );
   }
 }

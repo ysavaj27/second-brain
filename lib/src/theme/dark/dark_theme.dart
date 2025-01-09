@@ -6,8 +6,8 @@ class DarkTheme {
 
   static final theme = ThemeData(
     fontFamily: fonts,
-    iconTheme: const IconThemeData(color: Colors.white),
-    primarySwatch: Colors.grey,
+    // iconTheme: const IconThemeData(color: Colors.white),
+    // primarySwatch: Colors.grey,
     brightness: Brightness.dark,
     appBarTheme: const AppBarTheme(
       elevation: 0,

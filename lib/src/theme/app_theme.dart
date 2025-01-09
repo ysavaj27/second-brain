@@ -19,42 +19,27 @@ class AppTheme {
 
   static final lightTheme = LightTheme.theme;
 
-  static Future<void> setTheme({required ThemeMode mode}) async {
-    // Get.changeThemeMode(mode);
-    await prefs.setValue(key: AppKey.themeKey, value: mode.index);
-  }
 
-  static ThemeMode get getTheme {
-    int theme = prefs.getValue(key: AppKey.themeKey) ?? 0;
-    return ThemeMode.values[theme];
-  }
 
-  static List<BoxShadow> get boxShadow => <BoxShadow>[
-        BoxShadow(
-            color: AppColors.primary.withOpacity(0.5), //shadow for button
-            blurRadius: 5,
-            offset: const Offset(0, 2)) //blur radius of shadow
-      ];
-
-  static final defaultLightTheme = ThemeData(
-    scaffoldBackgroundColor: Colors.white,
-    colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-    useMaterial3: true,
-  );
-  static final redLightTheme = ThemeData(
-    scaffoldBackgroundColor: Colors.white,
-    colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
-    useMaterial3: true,
-  );
-  static final redDarkTheme = ThemeData(
-    scaffoldBackgroundColor: Colors.white,
-    colorScheme: ColorScheme.fromSeed(seedColor: Colors.redAccent),
-    useMaterial3: true,
-  );
-
-  static final defaultDarkTheme = ThemeData(
-    scaffoldBackgroundColor: Colors.black,
-    colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurpleAccent),
-    useMaterial3: true,
-  );
+  // static final defaultLightTheme = ThemeData(
+  //   scaffoldBackgroundColor: Colors.white,
+  //   colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+  //   useMaterial3: true,
+  // );
+  // static final redLightTheme = ThemeData(
+  //   scaffoldBackgroundColor: Colors.white,
+  //   colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
+  //   useMaterial3: true,
+  // );
+  // static final redDarkTheme = ThemeData(
+  //   scaffoldBackgroundColor: Colors.white,
+  //   colorScheme: ColorScheme.fromSeed(seedColor: Colors.redAccent),
+  //   useMaterial3: true,
+  // );
+  //
+  // static final defaultDarkTheme = ThemeData(
+  //   scaffoldBackgroundColor: Colors.black,
+  //   colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurpleAccent),
+  //   useMaterial3: true,
+  // );
 }

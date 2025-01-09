@@ -19,7 +19,6 @@ class DatabaseHelper {
   }
 
   static Future<Database> _initDatabase() async {
-    logger.i('Init Database Called');
     String path = '';
     if (Platform.isIOS) {
       var databasesPath = await getDatabasesPath();
@@ -29,14 +28,17 @@ class DatabaseHelper {
       path = documentsDirectory.path + Keys.databaseNAME;
     }
 
-    return await openDatabase(path,
-        version: Keys.databaseVERSION, onCreate: _onCreate);
+    return await openDatabase(
+      path,
+      version: Keys.databaseVERSION,
+      onCreate: _onCreate,
+      onUpgrade: _onUpgrade,
+    );
   }
 
   static Future<File> shareDB() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     String path = documentsDirectory.path + Keys.databaseNAME;
-    // Share.shareXFiles([XFile(path)], text: 'Great picture');
     final file = File(path);
     final fileWithData = await file.writeAsBytes(path.codeUnits);
     return File(path);
@@ -45,6 +47,13 @@ class DatabaseHelper {
   static Future<void> _onCreate(Database db, int version) async {
     logger.i('On Table Create Called');
     await CreateDatabase.songTable(db);
+    await CreateDatabase.favoriteTable(db);
+  }
 
+  static Future<void> _onUpgrade(
+      Database db, int oldVersion, int newVersion) async {
+    if (oldVersion < 3) {
+      await CreateDatabase.favoriteTable(db);
+    }
   }
 }

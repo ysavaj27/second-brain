@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:second_brain/src/backend/sqflite/init_database.dart';
 import '../utils/app_exports.dart';
 
 final InitConfig init = InitConfig.instance;
@@ -12,6 +13,7 @@ class InitConfig {
   Future<void> init() async {
     await _initLocalStorage();
     _setOrientation();
+
     // _getLanguage();
   }
 
@@ -33,7 +35,7 @@ class InitConfig {
 
   static _initLocalStorage() async {
     try {
-      logger.d('INITING GET STORAGE');
+      logger.d('INVITING GET STORAGE');
       // await Get.putAsync(() => PrefConfig().init());
     } catch (e) {
       logger.e(e);

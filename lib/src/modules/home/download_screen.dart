@@ -1,12 +1,18 @@
-import 'dart:collection';
 import 'dart:io';
-
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
+import 'package:palette_generator/palette_generator.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:second_brain/src/backend/sqflite/create_database.dart';
+import 'package:second_brain/src/backend/sqflite/song/song_db.dart';
+import 'package:second_brain/src/models/song/song_model.dart';
+import 'package:second_brain/src/utils/app_exports.dart';
 import 'package:youtube_explode_dart/youtube_explode_dart.dart';
 
 class DownloadScreen extends StatefulWidget {
+  const DownloadScreen({super.key});
+
   @override
   _DownloadScreenState createState() => _DownloadScreenState();
 }
@@ -22,8 +28,8 @@ class _DownloadScreenState extends State<DownloadScreen> {
   AudioOnlyStreamInfo? _selectedAudioFormat;
   MuxedStreamInfo? _selectedVideoFormat;
   double _progress = 0.0;
-  final Dio _dio = Dio();
   final YoutubeExplode _youtube = YoutubeExplode();
+  Dio dio = Dio();
 
   Future<void> fetchMetadata(String url) async {
     try {
@@ -78,9 +84,9 @@ class _DownloadScreenState extends State<DownloadScreen> {
       var stream = _youtube.videos.streamsClient.get(streamInfo);
       var file = await File(filePath).create();
       var sink = file.openWrite();
+      var color =await getImageAndGeneratePalette(_videoThumbnail ?? "");
       var total = streamInfo.size.totalBytes;
       var received = 0;
-
       await for (final chunk in stream) {
         received += chunk.length;
         setState(() {
@@ -89,6 +95,19 @@ class _DownloadScreenState extends State<DownloadScreen> {
         sink.add(chunk);
       }
       await sink.close();
+      try {
+        await SongDB.insert(
+          SongModel(
+            name: filePath.fileName,
+            filePath: file.path,
+            status: 1,
+            color: color?.value ??0,
+            thumbnail: _videoThumbnail ?? "",
+          ),
+        );
+      } on Exception catch (e) {
+        logger.e(e);
+      }
 
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text('Downloaded: $fileName'),
@@ -111,8 +130,43 @@ class _DownloadScreenState extends State<DownloadScreen> {
     super.dispose();
   }
 
+  Future<Color?> getImageAndGeneratePalette(String thumbnail) async {
+    try {
+      Response response = await dio.get(
+        thumbnail,
+        options: Options(responseType: ResponseType.bytes),
+      );
+
+      if (response.statusCode == 200) {
+        Uint8List imageBytes = response.data;
+
+        // Decode the image to get dimensions using instantiateImageCodec
+        final codec = await instantiateImageCodec(imageBytes);
+        final frame = await codec.getNextFrame();
+        final width = frame.image.width;
+        final height = frame.image.height;
+        // Generate a color palette using PaletteGenerator
+        final palette = await PaletteGenerator.fromImageProvider(
+          MemoryImage(imageBytes),
+          size:
+              Size(width.toDouble(), height.toDouble()), // Pass the dimensions
+        );
+
+        return palette.dominantColor?.color;
+
+        // Now you can use the palette for any UI element
+      } else {
+        logger.d("Failed to load image, status code: ${response.statusCode}");
+      }
+    } catch (e) {
+      logger.e('Error: $e');
+    }
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
+    // logger.d('Video Thumb :${_videoThumbnail}');
     return Scaffold(
       appBar: AppBar(
         title: Text('Download Options'),
@@ -161,7 +215,7 @@ class _DownloadScreenState extends State<DownloadScreen> {
                   groupValue: _selectedVideoFormat,
                   onChanged: (value) {
                     setState(() {
-                      _selectedVideoFormat = value ;
+                      _selectedVideoFormat = value;
                     });
                   },
                 ),
